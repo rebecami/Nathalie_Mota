@@ -70,6 +70,15 @@ p {
     gap:40px;
 }
 
+.navbar-light .navbar-toggler {
+    border: none;
+    color: white;
+}
+
+.collapse.active {
+    display: block;
+}
+
 /* Footer */
 .footer-menu {
     display: flex;
@@ -147,6 +156,23 @@ p {
     }
 }
 
+@media (max-width:575px) {
+    #menu-en-tete {
+        background: #E00000;
+        font-size: 44px;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        text-align: center;
+        display: block;
+        align-content: center;
+        right: 0;
+    }
+    #navbarSupportedContent .nav-link {
+        color: white !important;
+    }
+}
 @media (max-width:500px) {
     .footer-menu {
         flex-direction: column;

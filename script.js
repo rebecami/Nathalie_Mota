@@ -1,3 +1,10 @@
+//Menu
+const collapse = document.getElementById("navbarSupportedContent")
+
+icons.addEventListener("click", () => {
+  collapse.classList.toggle("active");
+});
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
