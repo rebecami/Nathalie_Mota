@@ -28,6 +28,7 @@ h3 {
     font-style: normal;
     font-weight: 400;
     text-transform: uppercase;
+    padding-top: 77px;
 }
 
 body {
@@ -43,6 +44,12 @@ p {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
+    text-transform: uppercase;
+}
+
+hr{
+    background: black;
+    height: 1px;
 }
 
 /* Header */
@@ -103,11 +110,23 @@ p {
     background-color: rgba(0,0,0,0.4); 
 }
 
+@keyframes fade-in-up {
+    0% {       
+        transform: translateY(300px);
+        opacity: 0;
+    }
+    100% {        
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; 
     border: 5px solid black;
-    width: 80%; 
+    width: 42%; 
+    animation: fade-in-up 1100ms;
 }
 
 .modal-content p {
@@ -133,6 +152,10 @@ p {
     border: 1px solid #B8BBC2;
 }
 
+.modal-content label{
+    text-align: start;
+}
+
 .wpcf7-spinner {
     display: none;
 }
@@ -143,14 +166,118 @@ p {
     border: none !important;
     font-family: 'Space Mono' !important;
 }
+
+/* Photo detail */
+.post{
+    display: flex;
+    gap: 20px;
+}
+
+.post_content{
+    align-content: end;
+}
+
+.gallery_img img {
+    object-fit: cover;
+    object-position: bottom;
+    width: 42vw;
+    height: 56vw; 
+}
+.info{
+    list-style: none; 
+    width: 38vw;  
+}
+
+.info li{
+    padding-top: 20px;
+}
+
+.interested_picture{
+    display: flex;
+    justify-content: space-between;
+}
+
+.photo_contact {
+    display: flex;
+    height: 118px;
+    width: 38vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.interested {
+    text-transform: none;
+    align-content: center;
+    margin: 0;
+}
+
+#myBtn{
+    display: flex;
+    width: 272px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    background: #D8D8D8;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+}
+
+#myBtn:hover{
+    cursor: pointer;
+    background: #C4C4C4;
+}
+
+/* Miniatures */
+#photo_navigation{
+    align-self: end;
+    width: 81px;
+}
+
+img{
+    vertical-align: super;
+}
+
+#previous_link, #next_link{
+    text-decoration: none;
+}
+
+.arrow{
+    vertical-align: bottom;
+}
+
+.previous_img, .next_img{
+    width: 81px;
+    height: 71px;
+    object-fit: cover;
+}
+
+.miniature{
+    display: none;
+}
+
+.next_link{
+    vertical-align: bottom;
+}
+
+/* Photos apparentées */
+.related_picture{
+    display: flex;
+    gap: 20px;
+    padding-top: 52px;
+}
+
+.related_picture img{
+    width: 50%;
+    height: 495px;
+    object-fit: cover;
+}
+
 /* Mobile */
 @media (max-width:500px) {
     h1{
         font-size: 27.588px;
     }
-}
-
-@media (max-width:500px) {
     h2{
         font-size: 46px;
     }
@@ -173,6 +300,7 @@ p {
         color: white !important;
     }
 }
+
 @media (max-width:500px) {
     .footer-menu {
         flex-direction: column;
@@ -184,16 +312,49 @@ p {
     .modal-content input {
         font-size: x-small;
     }
-}
-
-@media (max-width:650px) {
+    .modal-content{
+        width: 80%;
+    }
     .modal-content textarea {
         font-size: x-small;
+    }
+     .wpcf7-submit {
+        width: 16rem;
     }
 }
 
 @media (max-width:650px) {
-    .wpcf7-submit {
-        width: 16rem;
+    h2{
+        margin-left: 40px;
+    }
+    .post{
+        flex-direction: column-reverse;
+    }
+    .gallery_img img{
+        height: 100%;
+        width: 100%;
+    }
+    .info{
+        width: 93vw;
+    }
+    #photo_navigation{
+        display: none;
+    }
+    .photo_contact{
+        width: 100%;
+    }
+    .related_picture{
+        flex-direction: column;
+    }
+    .related_picture img{
+        width: 92vw;
+        height: 90vw;
+    }
+}
+
+/* Tablette */
+@media (max-width:820px){
+    .modal-content{
+        width: 80%;
     }
 }
