@@ -23,12 +23,8 @@
            //var_dump($morePictures->get_the_post()); exit;
             $morePictures->the_post();
             $thumbnail_id = get_post_thumbnail_id();
-            $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, "large");
-            ?>
-
-                <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php the_title(); ?>">
-
-        <?php
+            $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, "large");?>
+                <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php the_title(); ?>"><?php
         } 
     ?>    
 </div>

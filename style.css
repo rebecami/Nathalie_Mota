@@ -114,6 +114,20 @@ hr{
     -webkit-text-stroke-color: #FFF;
 }
 
+/* Home page */
+.home_gallery{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 30px;
+}
+.home_gallery img{
+    width: 545px;
+    height: 495px;
+    object-fit: cover;
+}
+
 /* Modal */
 .modal {
     display: none; 

@@ -7,6 +7,7 @@
         $query_hero = new WP_Query([
             'post_type' => 'photo',        
             'posts_per_page' => 1,
+            'orderby'=> 'rand',
             'tax_query' =>[
                 [
                     'taxonomy' => 'format',
@@ -22,6 +23,23 @@
             <?php
             } 
         ?>    
+</div>
+
+<!-- Liste des photos -->
+<div class="home_gallery">
+    <?php 
+    $gallery = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page' => 8
+    ]);
+    while($gallery->have_posts()){ 
+        //var_dump($morePictures->get_the_post()); exit;
+        $gallery->the_post();
+        $thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'medium-large');?>
+            <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php the_title(); ?>"><?php
+    }
+    ?>
 </div>
 
 <?php get_footer() ?>
