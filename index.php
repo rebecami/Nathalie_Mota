@@ -25,7 +25,6 @@
         ?>    
 </div>
 
-<!-- Liste des photos -->
 <div class="home_gallery">
     <?php 
     $gallery = new WP_Query([
@@ -33,7 +32,6 @@
         'posts_per_page' => 8
     ]);
     while($gallery->have_posts()){ 
-        //var_dump($morePictures->get_the_post()); exit;
         $gallery->the_post();
         $thumbnail_id = get_post_thumbnail_id();
         $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'medium-large');?>
@@ -41,5 +39,10 @@
     }
     ?>
 </div>
+
+<div class="btn__wrapper">
+  <button class="btn__primary" id="load-more">Charger plus</button>
+</div> 
+<hr/>
 
 <?php get_footer() ?>

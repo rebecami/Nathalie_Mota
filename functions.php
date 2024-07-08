@@ -32,3 +32,28 @@ add_action('after_setup_theme', 'montheme_supports');
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+
+wp_localize_script('script', 'gallery_load_more',[
+    'ajaxUrl' => admin_url('admin-ajax.php'),
+    'ajax_nonce' => wp_create_nonce('loadmore_post_nonce'),
+]);
+
+function gallery_load_more(){
+    $ajaxposts = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page' => 8,
+        'offset' => $_POST['offset'],
+    ]);
+
+    while($ajaxposts->have_posts()){ 
+        //var_dump($morePictures->get_the_post()); exit;
+        $ajaxposts->the_post();
+        $thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'medium-large');?>
+        <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php the_title(); ?>"><?php
+    }
+    exit;
+}
+add_action('wp_ajax_gallery_load_more', 'gallery_load_more');
+add_action('wp_ajax_nopriv_gallery_load_more', 'gallery_load_more');
+?>

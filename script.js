@@ -11,13 +11,14 @@ var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 
 // When the user clicks on the button, open the modal
-btn.onclick = function (){
-  modal.style.display = "block"; 
-  let referenceText = document.querySelector('#reference').textContent;
-  let input = document.querySelector('#ref-photo');
-  input.value = referenceText;
-};
-
+if(btn){
+  btn.onclick = function (){
+    modal.style.display = "block"; 
+    let referenceText = document.querySelector('#reference').textContent;
+    let input = document.querySelector('#ref-photo');
+    input.value = referenceText;
+  };
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
@@ -42,5 +43,26 @@ $(function(){
   },
   function(){
     $(".next_img").hide();
+  });
+});
+
+// Home gallery 
+
+let offset = 8;
+$('#load-more').on('click', function() {
+
+
+  $.ajax({
+    type: 'POST',
+    url: '/wp-admin/admin-ajax.php',
+    dataType: 'html',
+    data: {
+      action: 'gallery_load_more',
+      offset: offset,
+    },
+    success: function (res) {
+      $('.home_gallery').append(res);
+      offset+=8;
+    }
   });
 });

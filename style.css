@@ -112,6 +112,7 @@ hr{
     color: transparent;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #FFF;
+    text-align: center;
 }
 
 /* Home page */
@@ -126,6 +127,33 @@ hr{
     width: 545px;
     height: 495px;
     object-fit: cover;
+}
+
+.btn__wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.btn__primary{
+    display: flex;
+    width: 272px;
+    height: 50px;
+    padding: 8px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: #D8D8D8;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+    border: none;
+    cursor: pointer;
+}
+
+.btn__primary:hover{
+    background: #C4C4C4;
 }
 
 /* Modal */
@@ -338,6 +366,10 @@ img{
 @media (max-width:500px) {
     .site_title{
         font-size: 2rem;
+    }
+    .home_gallery img{
+        width: 318px;
+        height: 279px;
     }
 }
 
