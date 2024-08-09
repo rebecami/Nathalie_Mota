@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <?php wp_head() ?>
 </head>
 <body>
 <nav id="nav" class="navbar navbar-expand-sm navbar-light bg-light">
   <a class="navbar-brand" href="http://nathalie-mota.local/" rel="home"><img src="/wp-content/themes/Nathalie_Mota/assets/logo.png" alt="logo de la société" /></a>
-  <button id="icons" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button id="icons" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="toggler-icon top-bar"></span> 
+    <span class="toggler-icon middle-bar"></span>  
+    <span class="toggler-icon bottom-bar"></span> 
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

@@ -25,19 +25,57 @@
         ?>    
 </div>
 
+<div class="filters">
+    <div class="taxonomy_filter">
+        <?php
+        $category = strip_tags(get_the_term_list($post->ID, 'categorie'));
+        $categories = get_terms(array(
+            'taxonomy' => 'categorie',
+            'hide_empty' => false,
+            'terms' => $category
+        )); 
+        ?>
+        <select name="categorie" id="categorie"> 
+            <option value="" disabled selected>Catégories</option>
+            <?php   
+                foreach($categories as $categorie){
+                    if($categorie->slug !== 'categorie'){ ?>
+                        <option value="<?php echo esc_attr($categorie->slug); ?>">
+                            <?php echo esc_html($categorie->name); ?>
+                        </option><?php
+                    }
+                } 
+            ?>
+        </select>
+    
+        <?php 
+        $formats =get_terms(array(
+            'taxonomy' => 'format'
+        ));
+        ?>
+        <select name="format" id="format">
+            <option value="" disabled selected>Formats</option>
+            <?php 
+                foreach($formats as $format)
+                if($format->slug !== 'format'){ ?>
+                    <option value="<?php echo esc_attr($format->slug); ?>">
+                        <?php echo esc_html($format->name); ?>
+                    </option><?php
+                }
+            ?>
+        </select>
+    </div>
+    <div class="date_filter">
+        <select name="date" id="date">
+            <option value="" disabled selected>Trier par</option>
+            <option value="DESC">Plus récent</option>
+            <option value="ASC">Plus ancien</option>
+        </select>
+    </div>
+</div>
+
 <div class="home_gallery">
-    <?php 
-    $gallery = new WP_Query([
-        'post_type' => 'photo',
-        'posts_per_page' => 8
-    ]);
-    while($gallery->have_posts()){ 
-        $gallery->the_post();
-        $thumbnail_id = get_post_thumbnail_id();
-        $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'medium-large');?>
-            <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php the_title(); ?>"><?php
-    }
-    ?>
+   
 </div>
 
 <div class="btn__wrapper">

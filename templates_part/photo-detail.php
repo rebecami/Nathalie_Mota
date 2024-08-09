@@ -17,7 +17,7 @@ $type = get_field('type');
         <h2><?php the_title(); ?></h2>
         <ul class="info">
             <p>
-                <li> Référence: <span id="reference"> <?php echo $reference; ?> </span></li>
+                <li> Référence: <span id="reference"><?php echo $reference; ?> </span></li>
                 <li> Catégorie: <?php echo get_the_terms(get_the_ID(), 'categorie')[0]->name; ?> </li>
                 <li> Format: <?php echo get_the_terms(get_the_ID(), 'format') [0]->name; ?> </li>
                 <li> Type: <?php echo $type; ?> </li>
@@ -36,28 +36,37 @@ $type = get_field('type');
         <p class="interested">Cette photo vous intéresse?</p>
         <button id="myBtn">Contact <?php get_template_part('templates_part/modal'); ?> </button>
     </div>
-    <div id="photo_navigation">
-     <?php 
-    $previousPhoto = get_previous_post();
-    $nextPhoto = get_next_post();
-    if (!empty($previousPhoto)) {
-        $previousThumbnail = get_the_post_thumbnail_url($previousPhoto->ID);
-        $previousLink = get_permalink($previousPhoto); ?> 
-        <a id="previous_link" href="<?php echo $previousLink; ?>"> 
-        <img class="miniature previous_img" src="<?php echo $previousThumbnail; ?>" alt="afficher la photo précédente" />
-        <img class="arrow" src="<?php echo get_template_directory_uri(); ?>/assets/arrow_left.png" alt="Flèche vers la gauche" />
-        </a>
-        <?php
-    }
-    if(!empty($nextPhoto)) {
-        $nextThumbnail = get_the_post_thumbnail_url($nextPhoto->ID);
-		$nextLink = get_permalink($nextPhoto); ?>
-        <a id="next_link" href="<?php echo $nextLink; ?>">
-        <img class="arrow" src="<?php echo get_template_directory_uri(); ?>/assets/arrow_right.png" alt="Flèche vers la droite" /> 
-        <img class= "miniature next_img" src="<?php echo $nextThumbnail; ?>" alt="afficher la photo suivante" />        
-        </a>         
-        <?php
-    } ?>
+    <div class="miniature_container">
+        <div id="photo_navigation">
+            <?php 
+                $previousPhoto = get_previous_post();
+                $nextPhoto = get_next_post();
+                if (!empty($previousPhoto)) {
+                    $previousThumbnail = get_the_post_thumbnail_url($previousPhoto->ID);
+                    $previousLink = get_permalink($previousPhoto); ?> 
+                    <a id="previous_link" href="<?php echo $previousLink; ?>">                 
+                        <img class="arrow" src="<?php echo get_template_directory_uri(); ?>/assets/arrow_left.png" alt="Flèche vers la gauche" />
+                    </a><?php
+                }
+                if(!empty($nextPhoto)) {
+                    $nextThumbnail = get_the_post_thumbnail_url($nextPhoto->ID);
+                    $nextLink = get_permalink($nextPhoto); ?>
+                    <a id="next_link" href="<?php echo $nextLink; ?>">
+                        <img class="arrow" src="<?php echo get_template_directory_uri(); ?>/assets/arrow_right.png" alt="Flèche vers la droite" />             
+                    </a><?php
+                } 
+            ?>
+        </div>
+        <div class="img_nav">
+            <?php
+                if (!empty($previousThumbnail)){ ?>
+                    <img class="miniature previous_img" src="<?php echo $previousThumbnail; ?>" alt="afficher la photo précédente" /><?php
+                }
+                if (!empty($nextThumbnail)){ ?>
+                    <img class= "miniature next_img" src="<?php echo $nextThumbnail; ?>" alt="afficher la photo suivante" /> <?php     
+                }
+            ?>
+        </div>
     </div>
 </div>
 <hr/>

@@ -1,9 +1,3 @@
-//Menu
-const collapse = document.getElementById("navbarSupportedContent")
-icons.addEventListener("click", () => {
-  collapse.classList.toggle("active");
-});
-
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -17,6 +11,13 @@ if(btn){
     let referenceText = document.querySelector('#reference').textContent;
     let input = document.querySelector('#ref-photo');
     input.value = referenceText;
+  };
+}
+
+var cta = document.getElementById("myCTA");
+if(cta){
+  cta.onclick = function (){
+    modal.style.display = "block"; 
   };
 }
 // When the user clicks anywhere outside of the modal, close it
@@ -47,22 +48,60 @@ $(function(){
 });
 
 // Home gallery 
+// Au chargement de la page, on charge les photos
+let nbPagePerPage = 8;
+let offset = 0;
+loadPhotos();
 
-let offset = 8;
 $('#load-more').on('click', function() {
+  loadPhotos();
+});
 
-
+function loadPhotos() {
+  $category=$("select[name='categorie']").val();
+  $format=$("select[name='format']").val();
+  $sort=$("select[name='date']").val();
   $.ajax({
     type: 'POST',
     url: '/wp-admin/admin-ajax.php',
     dataType: 'html',
     data: {
-      action: 'gallery_load_more',
+      action: 'load_photo',
+      categorie: $category,
+      format: $format,
+      order: $sort,
       offset: offset,
+      nbPagePerPage: nbPagePerPage,
     },
     success: function (res) {
       $('.home_gallery').append(res);
-      offset+=8;
+      offset+=nbPagePerPage;
     }
   });
+}
+
+// Filtres
+function filter_photo() {
+  // Quand on change de filtre, on réinitialise tout
+  offset = 0;
+  $('.home_gallery').html('');
+  loadPhotos();
+}
+
+$(function(){
+  $("#categorie").select2(),
+      $("#format").select2(),
+      $("#date").select2()
 });
+
+$("select[name='categorie']").change(function() {
+  filter_photo();
+});    
+
+$("select[name='format']").change(function() {
+  filter_photo();
+});    
+
+$("select[name='date']").change(function() {
+  filter_photo();
+});    
