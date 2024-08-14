@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav id="nav" class="navbar navbar-expand-sm navbar-light bg-light">
-  <a class="navbar-brand" href="http://nathalie-mota.local/" rel="home"><img src="/wp-content/themes/Nathalie_Mota/assets/logo.png" alt="logo de la société" /></a>
+  <a class="navbar-brand" href="<?php echo home_url('/'); ?>" rel="home"><img src="/wp-content/themes/Nathalie_Mota/assets/logo.png" alt="logo de la société" /></a>
   <button id="icons" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="toggler-icon top-bar"></span> 
     <span class="toggler-icon middle-bar"></span>  

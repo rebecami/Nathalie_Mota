@@ -16,6 +16,9 @@ function montheme_register_assets () {
     wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
     wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array(), null, true);
     wp_enqueue_script ('script', get_stylesheet_directory_uri() . '/script.js', array(), '1.0', true);
+    wp_localize_script('script', 'load_photo',[
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+    ]);
 }
 
 function montheme_menu_class($classes)
@@ -44,10 +47,6 @@ add_action('after_setup_theme', 'montheme_supports');
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
-
-wp_localize_script('script', 'load_photo',[
-    'ajaxUrl' => admin_url('admin-ajax.php'),
-]);
 
 function load_photo() {
 
@@ -113,6 +112,9 @@ function load_photo() {
         </div>
             <?php
         }
+    }
+    else {
+        echo "Aucune image à afficher";
     }
     exit;
 }

@@ -294,6 +294,7 @@ select{
     border: 5px solid black;
     width: 42%; 
     animation: fade-in-up 1100ms;
+    margin-top: 0;
 }
 
 .modal-content p {
@@ -311,6 +312,7 @@ select{
     font-family: initial;
     height: 50px;
     border: 1px solid #B8BBC2;
+    text-transform: uppercase;
 }
 
 .modal-content textarea {

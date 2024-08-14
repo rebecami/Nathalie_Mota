@@ -63,7 +63,7 @@ function loadPhotos() {
   $sort=$("select[name='date']").val();
   $.ajax({
     type: 'POST',
-    url: '/wp-admin/admin-ajax.php',
+    url: load_photo.ajaxUrl,
     dataType: 'html',
     data: {
       action: 'load_photo',
@@ -76,7 +76,7 @@ function loadPhotos() {
     success: function (res) {
       $('.home_gallery').append(res);
       offset+=nbPagePerPage;
-    }
+    }    
   });
 }
 
